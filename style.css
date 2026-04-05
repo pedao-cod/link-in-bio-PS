@@ -1,0 +1,165 @@
+:root {
+  /* Paleta Modern Dark / Glassmorphism */
+  --cor-fundo: #0f172a; /* Slate 900 (Fundo principal escuro) */
+  --cor-fundo-card: rgba(30, 41, 59, 0.6); /* Fundo do card translúcido */
+  --cor-primaria: #38bdf8; /* Sky 400 (Azul Neon para destaque) */
+  --cor-primaria-hover: #0284c7; /* Sky 600 */
+  --cor-texto: #f8fafc; /* Slate 50 (Branco suave) */
+  --cor-texto-claro: #94a3b8; /* Slate 400 (Cinza para textos secundários) */
+  --branco: #ffffff;
+  --borda: rgba(255, 255, 255, 0.1);
+  --borda-hover: rgba(56, 189, 248, 0.5);
+}
+
+/* Reset */
+* {
+  border: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  align-items: center;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Container Principal (Glassmorphism Effect) */
+.my-links {
+  align-items: center;
+  background: var(--cor-fundo-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--borda);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin: 40px 0;
+  max-width: 400px;
+  padding: 40px 24px;
+  position: relative;
+  width: 90%;
+}
+
+/* Header do Perfil */
+.avatar {
+  border: 3px solid var(--cor-primaria);
+  border-radius: 80%;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+  height: 120px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  width: 120px;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+h1 {
+  color: var(--cor-texto);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-top: 16px;
+}
+
+h2 {
+  color: var(--cor-primaria);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* Área dos Links */
+.my-extra-links {
+  padding-top: 24px;
+  width: 100%;
+}
+
+.my-extra-links li:not(.divisor) {
+  margin-bottom: 14px;
+}
+
+/* Divisores com linhas laterais elegantes */
+.my-extra-links li.divisor {
+  align-items: center;
+  color: var(--cor-texto-claro);
+  cursor: default;
+  display: flex;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  margin: 28px 0 16px 0;
+  text-transform: uppercase;
+}
+
+.my-extra-links li.divisor::before,
+.my-extra-links li.divisor::after {
+  border-bottom: 1px solid var(--borda);
+  content: "";
+  flex: 1;
+  margin: 0 12px;
+}
+
+/* Design dos Botões */
+.my-extra-links li:not(.divisor) a {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  color: var(--cor-texto);
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.link-icon {
+  height: 22px;
+  margin-right: 12px;
+  object-fit: contain;
+  width: 22px;
+}
+
+/* Efeito Hover dos Botões */
+.my-extra-links li:not(.divisor) a:hover {
+  background: var(--cor-primaria-hover);
+  border-color: var(--borda-hover);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(56, 189, 248, 0.2);
+  color: var(--branco);
+  transform: translateY(-3px);
+}
+
+/* Fundo Interativo */
+canvas {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -100;
+}
