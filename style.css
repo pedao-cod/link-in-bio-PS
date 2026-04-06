@@ -1,14 +1,95 @@
 :root {
-  /* Paleta Modern Dark / Glassmorphism */
-  --cor-fundo: #0f172a; /* Slate 900 (Fundo principal escuro) */
-  --cor-fundo-card: rgba(30, 41, 59, 0.6); /* Fundo do card translúcido */
-  --cor-primaria: #38bdf8; /* Sky 400 (Azul Neon para destaque) */
-  --cor-primaria-hover: #0284c7; /* Sky 600 */
-  --cor-texto: #f8fafc; /* Slate 50 (Branco suave) */
-  --cor-texto-claro: #94a3b8; /* Slate 400 (Cinza para textos secundários) */
+  /* Paleta Modern Dark (Padrão) */
+  --cor-fundo: #0f172a; 
+  --cor-fundo-card: rgba(30, 41, 59, 0.6); 
+  --cor-primaria: #38bdf8; 
+  --cor-primaria-hover: #0284c7; 
+  --cor-texto: #f8fafc; 
+  --cor-texto-claro: #94a3b8; 
   --branco: #ffffff;
   --borda: rgba(255, 255, 255, 0.1);
   --borda-hover: rgba(56, 189, 248, 0.5);
+}
+
+body.light-mode {
+  /* Paleta Light Mode (Ativada pelo JS) */
+  --cor-fundo: #f1f5f9; 
+  --cor-fundo-card: rgba(255, 255, 255, 0.6); 
+  --cor-primaria: #0284c7; 
+  --cor-primaria-hover: #0369a1; 
+  --cor-texto: #0f172a; 
+  --cor-texto-claro: #475569; 
+  --borda: rgba(0, 0, 0, 0.1);
+  --borda-hover: rgba(2, 132, 199, 0.5);
+}
+
+/* Mantenha o restante do seu código (body, ul, .my-links, etc.) exatamente como estava. 
+Apenas adicione o código abaixo no FINAL do arquivo:
+*/
+
+/* Estilos do Botão Toggle (Switch) */
+.theme-switch-wrapper {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 100;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 30px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider.round {
+  border-radius: 34px;
+  border: 1px solid var(--borda);
+}
+
+.slider:before {
+  background-color: var(--cor-primaria);
+  border-radius: 50%;
+  bottom: 3px;
+  content: "";
+  height: 22px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 22px;
+  z-index: 2;
+}
+
+input:checked + .slider {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+input:checked + .slider:before {
+  transform: translateX(28px);
+}
+
+.icon {
+  font-size: 14px;
+  z-index: 1;
 }
 
 /* Reset */
