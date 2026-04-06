@@ -87,6 +87,64 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="./scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script>
+      // Captura o botão de alternância
+      const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+      const currentTheme = localStorage.getItem('theme');
+
+      // Função para atualizar a cor das partículas do Particles.js em tempo real
+      function updateParticlesColor(colorHex) {
+        if (window.pJSDom && window.pJSDom.length > 0) {
+          window.pJSDom[0].pJS.particles.color.value = colorHex;
+          window.pJSDom[0].pJS.fn.particlesRefresh(); // Atualiza o canvas
+        }
+      }
+
+      // Verifica se o usuário já tem uma preferência salva ou prefere tema claro no celular/PC
+      if (currentTheme) {
+        if (currentTheme === 'light-mode') {
+          document.body.classList.add('light-mode');
+          if (toggleSwitch) toggleSwitch.checked = true;
+        }
+      } else {
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        if (prefersLight) {
+          document.body.classList.add('light-mode');
+          if (toggleSwitch) toggleSwitch.checked = true;
+        }
+      }
+
+      // Função principal de troca de tema
+      function switchTheme(e) {
+        if (e.target.checked) {
+          document.body.classList.add('light-mode');
+          localStorage.setItem('theme', 'light-mode');
+          updateParticlesColor('#0284c7'); // Cor das partículas no modo claro
+        } else {
+          document.body.classList.remove('light-mode');
+          localStorage.setItem('theme', 'dark-mode');
+          updateParticlesColor('#38bdf8'); // Cor das partículas no modo escuro
+        }
+      }
+
+      // Adiciona o ouvinte de evento no botão (se ele existir na tela)
+      if (toggleSwitch) {
+        toggleSwitch.addEventListener('change', switchTheme);
+      }
+
+      // Inicialização original do Particles.js
+      window.onload = () => {
+        particlesJS.load('particles-js', './particles.json', function () {
+          console.log('callback - particles.js config loaded');
+          
+          // Sincroniza a cor inicial das partículas com o tema carregado
+          if (document.body.classList.contains('light-mode')) {
+            updateParticlesColor('#0284c7');
+          }
+        });
+      }
+    </script>
   </body>
 </html>
